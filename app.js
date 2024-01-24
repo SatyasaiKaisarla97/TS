@@ -1,17 +1,12 @@
-window.onload = function () {
-    var num1 = document.getElementById("num1");
-    var num2 = document.getElementById("num2");
-    var addButton = document.getElementById("addButton");
-    var resultParagraph = document.getElementById("result");
-    if (addButton) {
-        addButton.addEventListener("click", function () {
-            var sum = Number(num1.value) + Number(num2.value);
-            if (resultParagraph) {
-                resultParagraph.textContent = "Result: ".concat(sum);
-            }
-        });
-    }
-    else {
-        console.error("Add button not found");
-    }
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const body_parser_1 = __importDefault(require("body-parser"));
+const todos_1 = __importDefault(require("./routes/todos"));
+const app = (0, express_1.default)();
+app.use(body_parser_1.default.json());
+app.use(todos_1.default);
+app.listen(3000);

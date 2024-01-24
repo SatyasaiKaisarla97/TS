@@ -1,17 +1,10 @@
-window.onload = () => {
-  const num1 = document.getElementById("num1") as HTMLInputElement;
-  const num2 = document.getElementById("num2") as HTMLInputElement;
-  const addButton = document.getElementById("addButton");
-  const resultParagraph = document.getElementById("result");
+import express from "express";
+import bodyParser from "body-parser";
+import todosRoutes from "./routes/todos";
 
-  if (addButton) {
-    addButton.addEventListener("click", () => {
-      const sum = Number(num1.value) + Number(num2.value);
-      if (resultParagraph) {
-        resultParagraph.textContent = `Result: ${sum}`;
-      }
-    });
-  } else {
-    console.error("Add button not found");
-  }
-};
+const app = express();
+app.use(bodyParser.json());
+
+app.use(todosRoutes);
+
+app.listen(3000);
